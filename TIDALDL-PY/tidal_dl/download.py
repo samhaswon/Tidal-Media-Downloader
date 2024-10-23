@@ -11,9 +11,9 @@
 
 from concurrent.futures import ThreadPoolExecutor
 
-from decryption import *
-from printf import *
-from tidal import *
+from .decryption import *
+from .printf import *
+from .tidal import *
 
 
 def __isSkip__(finalpath, url):

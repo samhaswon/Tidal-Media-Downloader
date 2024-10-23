@@ -2,9 +2,9 @@
 # -*- encoding: utf-8 -*-
 '''
 @File    :   printf.py
-@Time    :   2020/08/16
+@Time    :   2024/10/23
 @Author  :   Yaronzz
-@Version :   3.0
+@Version :   3.1
 @Contact :   yaronhuang@foxmail.com
 @Desc    :
 '''
@@ -14,15 +14,15 @@ import aigpy
 import logging
 import prettytable
 
-import apiKey as apiKey
+from . import apiKey
 
-from model import *
-from paths import *
-from settings import *
-from lang.language import *
+from .model import *
+from .paths import *
+from .settings import *
+from .lang.language import *
 
 
-VERSION = '2022.10.31.1'
+VERSION = '2024.10.23.1'
 __LOGO__ = f'''
  /$$$$$$$$ /$$       /$$           /$$               /$$ /$$
 |__  $$__/|__/      | $$          | $$              | $$| $$
