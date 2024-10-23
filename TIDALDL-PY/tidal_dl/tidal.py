@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 '''
 @File    :   tidal.py
-@Time    :   2019/02/27
+@Time    :   2024/10/23
 @Author  :   Yaronzz
 @VERSION :   3.0
 @Contact :   yaronhuang@foxmail.com
@@ -16,8 +16,8 @@ from xml.etree import ElementTree
 
 import requests
 
-from model import *
-from settings import *
+from .model import *
+from .settings import *
 
 # SSL Warnings | retry number
 requests.packages.urllib3.disable_warnings()
@@ -360,7 +360,9 @@ class TidalAPI(object):
         elif quality == AudioQuality.HiFi:
             squality = "LOSSLESS"
         elif quality == AudioQuality.Max:
-            squality = "HI_RES_LOSSLESS"
+            # Update quality for "Max" in accordance with:
+            # https://github.com/Fokka-Engineering/TIDAL/wiki/track-streamUrl
+            squality = "HI_RES"
 
         paras = {"audioquality": squality, "playbackmode": "STREAM", "assetpresentation": "FULL"}
         data = self.__get__(f'tracks/{str(id)}/playbackinfopostpaywall', paras)
