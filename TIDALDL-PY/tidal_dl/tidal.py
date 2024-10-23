@@ -459,6 +459,10 @@ class TidalAPI(object):
         if "tidal.com" not in url:
             return Type.Null, url
 
+        # Fix for URLs copied from the Tidal app
+        if url.endswith("?u"):
+            url = url[:-2]
+
         url = url.lower()
         for index, item in enumerate(Type):
             if item.name.lower() in url:
