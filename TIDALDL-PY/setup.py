@@ -18,6 +18,7 @@ setup(
                       "pycryptodome", 
                       "pydub", 
                       "prettytable",
-                      "lxml"],
+                      "lxml",
+                      "ffmpeg-python>=0.2.0"],
     entry_points={'console_scripts': ['tidal-dl = tidal_dl:main', ]}
 )
