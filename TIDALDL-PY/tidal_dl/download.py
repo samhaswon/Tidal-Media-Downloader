@@ -10,6 +10,8 @@
 '''
 
 from concurrent.futures import ThreadPoolExecutor
+import ffmpeg
+import os
 
 from .decryption import *
 from .printf import *
@@ -49,6 +51,16 @@ def __parseContributors__(roleType, Contributors):
 
 
 def __setMetaData__(track: Track, album: Album, filepath, contributors, lyrics):
+    # Use ffmpeg to correct the header of the FLAC file. Reference:
+    # https://github.com/exislow/tidal-dl-ng/blob/17390cba7c8276bef5b91f93eca0957ba7e9cbee/tidal_dl_ng/download.py#L485
+    ffmpeg.input(
+        filepath
+    ).output(
+        filepath + ".flac", map=0, movflags="use_metadata_tags", acodec="copy", map_metadata="0:g", loglevel="quiet"
+    ).run()
+    os.remove(filepath)
+    os.rename(filepath + ".flac", filepath)
+
     obj = aigpy.tag.TagTool(filepath)
     obj.album = track.album.title
     obj.title = track.title
